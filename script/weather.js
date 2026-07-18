@@ -30,13 +30,19 @@ citySelect.addEventListener('change', async function(event) {
         // API 내부의 실시간 온도와 습도 변수 쏙 빼오기
         const currentTemp = data.current.temperature_2m;
         const currentHumidity = data.current.relative_humidity_2m;
+        
+        //
+        const currentDate = new Date().toLocaleString('ko-KR');
 
         // 최종 진짜 데이터를 DOM에 주입!
         weatherBox.innerHTML = `
             <div style="background-color: #f1f2f6; padding: 15px; border-radius: 6px; margin-top: 10px;">
                 <h4>🌍 ${cityName} 실시간 날씨</h4>
+                <p>📍 위도: <strong>${lat}</strong></p>
+                <p>📍 경도: <strong>${lon}</strong></p>
                 <p>🌡️ 현재 기온: <strong>${currentTemp}°C</strong></p>
                 <p>💧 현재 습도: <strong>${currentHumidity}%</strong></p>
+                <p>🗓️ 현재 날짜: <strong>${currentDate}</strong></p>
             </div>
         `;
 

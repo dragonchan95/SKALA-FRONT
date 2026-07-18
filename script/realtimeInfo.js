@@ -15,19 +15,26 @@ citySelect.addEventListener('change', async function(event) {
     }
 
     const coords = selectedValue.split(',');
+    const lat = coords[0];
+    const lon = coords[1];
     const cityName = citySelect.options[citySelect.selectedIndex].text;
 
     weatherBox.innerHTML = "<p>모듈을 통해 실시간 수신 중... 📡</p>";
 
     // 2. 수입해온 비동기 모듈 함수를 실행해 결과만 딱 받아옵니다. (코드가 훨씬 간결해집니다!)
     const weatherInfo = await getLiveWeather(coords[0], coords[1]);
+    // 현재 날짜 및 시간
+    const currentDate = new Date();
 
     if (weatherInfo) {
         weatherBox.innerHTML = `
             <div style="background-color: #e8f8f5; border-left: 5px solid #16a085; padding: 15px; margin-top: 10px;">
                 <h4>모듈형 날씨 피드: ${cityName}</h4>
-                <p>🌡️ 기온: ${weatherInfo.temp}°C</p>
-                <p>💧 습도: ${weatherInfo.humidity}%</p>
+                <p>📍 위도: <strong>${lat}</strong></p>
+                <p>📍 경도: <strong>${lon}</strong></p>
+                <p>🌡️ 현재 기온: <strong>${weatherInfo.temp}°C</strong></p>
+                <p>💧 현재 습도: <strong>${weatherInfo.humidity}%</strong></p>
+                <p>🗓️ 현재 날짜: <strong>${currentDate}</strong></p>
             </div>
         `;
     } else {

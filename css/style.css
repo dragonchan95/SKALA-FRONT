@@ -42,15 +42,22 @@ h3 {
     margin-bottom: 10px;
 }
 
-/* 본문 텍스트 링크 스타일 */
+/* 기본 a 태그 스타일 (기존 코드 유지) */
 a {
-    color: #ba0c26;         /* 링크는 선명한 파란색 */
-    text-decoration: underline;  /* 밑줄 깔끔하게 처리 */
+    color: #ba0c26;
+    text-decoration: none; /* 밑줄을 빼기 */
 }
 
-/* 마우스를 올렸을 때만 밑줄이 생기도록 설정 (Hover 가상 클래스 맛보기) */
-a:hover {
-    text-decoration: underline;
+/* 1. 첫 번째 li에 마우스를 올렸을 때, 그 안의 a 태그만 파랗게 변경 */
+ul li:first-child:hover a {
+    color: rgb(37, 34, 130);
+    text-decoration: underline; /* 마우스 올렸을 때만 밑줄 슥 */
+}
+
+/* 2. 나머지 짝수 li들의 a 태그에 마우스 올렸을 때 반응 */
+ul li:nth-child(even):hover a {
+    color: rgb(188, 173, 8);
+    text-decoration: underline; /* 마우스 올렸을 때만 밑줄 슥 */
 }
 
 /* ==========================================================================
